@@ -1,0 +1,45 @@
+<!-- Add Web Form -->
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">{{formTitle}}</h4>
+</div>
+<div class="modal-body">
+  <form name="addForm" novalidate>
+    <div
+      ng-class="{ 'has-error' : addForm.title.$invalid && !addForm.title.$untouched }"
+      class="form-group">
+      <label for="webTitle">Web Title</label>
+      <input
+        ng-model="title"
+        name="title"
+        autocomplete="off"
+        ng-minlength="4"
+        ng-maxlength="35"
+        required
+        type="text" class="form-control" id="webTitle" placeholder="Title">
+        <p ng-show="addForm.title.$error.minlength" class="help-block">Title is too short. (min. 4 characters)</p>
+        <p ng-show="addForm.title.$error.maxlength" class="help-block">Title is too long. (max. 35 characters)</p>
+    </div>
+
+    <div
+      ng-class="{ 'has-error' : addForm.url.$invalid && !addForm.url.$untouched }"
+      class="form-group">
+      <label for="webUrl">Web Url</label>
+      <input
+        ng-model="url"
+        name="url"
+        autocomplete="off"
+        ng-minlength="12"
+        ng-maxlength="255"
+        type="url" class="form-control" id="webUrl" placeholder="URL">
+        <p ng-show="addForm.url.$invalid && !addForm.url.$untouched" class="help-block">Url is required. (A valid one)</p>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <button
+    ng-click="saveFormBtn()"
+    ng-disabled="addForm.$invalid"
+    type="submit" class="btn btn-primary">Save changes</button>
+</div>
